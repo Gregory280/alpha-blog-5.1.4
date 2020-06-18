@@ -1,11 +1,17 @@
 <% if @article.errors.any? %>
-  <h3>The following errors prevented the article from being saved</h3>
-  <ul>
-    <% @article.errors.full_messages.each do |msg| %>
-      <li><%= msg %></li>
-    <% end %>
-  </ul>
+  <div class="ui negative message">
+    <i class="exclamation circle"></i>
+    <div class="header">
+      <h3>The following errors prevented the article from being saved</h3>
+    </div>
+    <ul class="list">
+      <% @article.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
 <% end %>
+
 <%= form_with(model: @article, local: true ) do |f| %>
   <p>
     <%= f.label :title %><br/>

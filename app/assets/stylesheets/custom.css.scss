@@ -1,0 +1,62 @@
+@import "semantic-ui";
+body {
+    box-sizing: border-box;
+}
+
+.navbar-bg {
+    background: linear-gradient(to right, #4e54c8, #8f94fb);
+    height: 75px;
+}
+
+.navbar {
+    width: 1100px;
+    margin: 0 auto;
+    display: flex;
+}
+
+.white {
+    color: white!important;
+}
+
+.navbar-links {
+    padding: 10px 20px 15px 20px!important;
+    font-weight: 900!important;
+}
+
+.spacing-left {
+    margin-left: 20px!important;
+}
+
+.spacing-top {
+    margin-top: 6px!important;
+}
+
+.jumbotron-bg {
+    height: 270px;
+    background: linear-gradient(to right, #4e54c8, #8f94fb);
+}
+
+.jumbotron-content {
+    width: 1100px;
+    margin: 0 auto;
+    display: flex;
+}
+
+.jumbotron-header {
+    display: flex;
+    width: 1090px;
+    flex-direction: row;
+    margin: 0 auto;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+.jumbotron-header h1 {
+    font-size: 40px;
+    margin-top: 15px;
+}
+
+.jumbotron-header h3 {
+    margin-top: -8px;
+    font-weight: 200!important;
+}

@@ -1,23 +1,24 @@
-<h1>Index page</h1>
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Description</th>
-      <th colspan="3">Actions</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @articles.each do |article| %>
-    <tr>
-      <td><%= article.title %></td>
-      <td><%= article.description %></td>
-      <td><%= link_to 'Show', article_path(article.id) %></td>
-      <td><%= link_to 'Edit', edit_article_path(article.id) %></td>
-      <td><%= link_to 'Delete', article_path(article.id), method: :delete, data: { confirm: 'Are you sure1?' } %></td>
-    </tr>
-    <% end %>
-  </tbody>
-</table>
-<%= link_to 'Create new article', new_article_path %> 
-<%= link_to 'Home Page', root_path %>
+<div class="container">
+  <div class="ui center aligned segment">
+    <h1>Articles Listing</h1>
+  </div>
+  <% @articles.each do |article| %>
+  <div class="contentt">
+    <div class="ui cards stackable centered">
+      <div class="card fluid ui spacing-between">
+        <div class="content center aligned">
+          <%= link_to article_path(article.id) do %>
+            <div class="header"><h1><%= article.title %></h1></div>
+          <% end %>
+          <div class="meta"><h5><%= article.created_at.strftime("%d/%m/%Y") %></h5></div>
+          <div class="description"><p class="article-content"><%= truncate(article.description, length: 300 ) %></p></div>
+          <%= link_to 'READ', article_path(article.id), class: 'tiny ui button spacing-top violet' %>
+          <%= link_to 'EDIT', edit_article_path(article.id), class: 'tiny ui button spacing-top grey' %>
+          <%= link_to 'DELETE', article_path(article.id), method: :delete, data: {confirm: 'Are you sure?'}, class: 'tiny ui button spacing-top red' %>
+        </div>
+      </div>
+  <% end %>
+    </div>
+  </div>
+</div>
+

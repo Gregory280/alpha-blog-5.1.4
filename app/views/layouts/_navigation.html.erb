@@ -2,24 +2,22 @@
   <div class="navbar white">
     <div class="ui text menu large navbar secondary">
       <a class="brand item">
-        <h2 class="ui header white">
-          <div class="content spacing-top">
-            ALPHA BLOG
-          </div>
-        </h2>
+        <div class="content">
+          <%= link_to 'ALPHA BLOG', root_path, class: 'ui header white large' %>
+        </div>
       </a>
-      <a class="active item white navbar-links stroke-effect spacing-left spacing-top">
-          Home
-        </a>
-        <a class="item white navbar-links spacing-top">
-          About
-        </a>
-        <a class="item white navbar-links spacing-top">
-          Articles
-        </a>
-        <a class="item white navbar-links spacing-top">
-          Categories
-        </a>
+      <%= link_to 'Home', root_path, class: 'active item white navbar-links stroke-effect spacing-left spacing-top' %>
+      <a class="item white navbar-links spacing-top">
+        About
+      </a>
+      <%= link_to 'Articles', articles_path, class: 'item white navbar-links spacing-top' %>
+      <%= link_to 'Create', new_article_path, class: 'item white navbar-links spacing-top' %>
+      <a class="item white navbar-links spacing-top">
+        Categories
+      </a>
+      <a class="item white navbar-links spacing-top">
+        Users
+      </a>
       <div class="right menu">
         <a class="ui item white">
           <button class="ui inverted button">Sign In</button>

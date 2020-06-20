@@ -1,6 +1,7 @@
 <div class="contentt">
   <%= render 'shared/errors', obj: @user %>
-  <%= form_with(url: '/users', model: @user, local: true ) do |f| %>
+  <%= form_for(@user, :html=> {role: 'form'}) do |f| %>
+
   <div class="ui form">
     <div class="field">
       <label><%= f.label :username %></label>
@@ -14,7 +15,7 @@
       <label><%= f.label :password %></label>
       <%= f.password_field :password %>
     </div>
-    <%= f.submit 'Sign Up', :class => 'ui submit button large fluid' %>
+    <%= f.submit(@user.new_record? ? 'Sign Up' : 'Update Account', :class => 'ui submit button large fluid') %>
   </div>
   <% end %>
 </div>

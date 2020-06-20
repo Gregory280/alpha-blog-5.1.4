@@ -9,6 +9,6 @@
     <label><%= f.label :description %></label>
     <%= f.text_area :description %>
   </div>
-  <%= f.submit 'Post it!', :class => 'ui submit button large fluid' %>
+  <%= f.submit(@article.new_record? ? 'Post it' : 'Update post', :class => 'ui submit button large fluid') %>
 </div>
 <% end %>

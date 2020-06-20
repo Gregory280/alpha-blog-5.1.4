@@ -19,12 +19,12 @@
         Users
       </a>
       <div class="right menu">
-        <a class="ui item white">
+        <%= link_to '#', class: 'ui item white' do %>
           <button class="ui inverted button">Sign In</button>
-        </a>
-        <a class="ui item white">
+        <% end %>
+        <%= link_to signup_path, class: 'ui item white' do %>
           <button class="ui inverted button">Sign Up</button>
-        </a>
+        <% end %>
       </div>
     </div>
   </div>

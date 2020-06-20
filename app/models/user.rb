@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   before_save {self.email = email.downcase}
+  has_secure_password
   has_many :articles
   validates :username, presence: true, length: {minimun: 3, maximum: 20}, uniqueness: true
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i

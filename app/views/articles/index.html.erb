@@ -2,6 +2,9 @@
   <div class="ui center aligned segment">
     <h1>Articles Listing</h1>
   </div>
+  <div class="flickr_pagination">
+    <%= will_paginate @articles, :container => false %>
+  </div>
   <% @articles.each do |article| %>
   <div class="contentt">
     <div class="ui cards stackable centered">
@@ -12,7 +15,11 @@
           <% end %>
           <div class="meta"><h5><%= article.created_at.strftime("%d/%m/%Y") %></h5></div>
           <div class="description"><p class="article-content"><%= truncate(article.description, length: 300 ) %></p></div>
-          <div class="meta"><p> by <%= article.user.username %></p></div>
+          <div class="meta">
+          <% if article.user %>
+            <p class="grey">by <%= link_to article.user.username %></p>
+          <% end %>
+          </div>
           <%= link_to 'READ', article_path(article.id), class: 'tiny ui button spacing-top violet' %>
           <%= link_to 'EDIT', edit_article_path(article.id), class: 'tiny ui button spacing-top grey' %>
           <%= link_to 'DELETE', article_path(article.id), method: :delete, data: {confirm: 'Are you sure?'}, class: 'tiny ui button spacing-top red' %>
@@ -21,5 +28,8 @@
   <% end %>
     </div>
   </div>
+  <div class="flickr_pagination">
+    <%= will_paginate @articles, :container => false %>
+  </div>
 </div>
-
+  

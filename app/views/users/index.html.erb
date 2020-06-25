@@ -1,0 +1,26 @@
+<div class="container">
+  <div class="ui center aligned segment">
+    <h1>Users Listing</h1>
+  </div>
+  <div class="flickr_pagination">
+    <%= will_paginate @users, :container => false %>
+  </div>
+  <% @users.each do |user| %>
+  <div class="contentt">
+    <div class="ui cards stackable centered">
+      <div class="card fluid ui spacing-between">
+        <div class="content center aligned">
+          <%= link_to user_path(user.id) do %>
+            <div class="header"><h1><%= user.username %></h1></div>
+          <% end %>
+          <div class="meta"><h5>Joined <%= user.created_at.strftime("%d/%m/%Y") %></h5></div>
+          <%= link_to gravatar_for(user, size: 100), user %>
+          <div class="meta"><h5><%= pluralize(user.articles.count, 'article') %></h5></div>
+          <%= link_to 'EDIT', edit_user_path(user.id), class: 'tiny ui button spacing-top grey' %>
+
+        </div>
+      </div>
+  <% end %>
+    </div>
+  </div>
+</div>

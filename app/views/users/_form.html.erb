@@ -12,7 +12,7 @@
       <%= f.text_field :email %>
     </div>
     <div class="field">
-      <label><%= f.label :password %></label>
+      <%= f.label :password %>
       <%= f.password_field :password %>
     </div>
     <%= f.submit(@user.new_record? ? 'Sign Up' : 'Update Account', :class => 'ui submit button large fluid') %>

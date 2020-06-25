@@ -11,19 +11,26 @@
         About
       </a>
       <%= link_to 'Articles', articles_path, class: 'item white navbar-links spacing-top' %>
-      <%= link_to 'Create', new_article_path, class: 'item white navbar-links spacing-top' %>
+      <%= link_to 'Create Article', new_article_path, class: 'item white navbar-links spacing-top' %>
       <a class="item white navbar-links spacing-top">
         Categories
       </a>
-      <a class="item white navbar-links spacing-top">
-        Users
-      </a>
+      <%= link_to 'Users', users_path, class: 'item white navbar-links spacing-top' %>
       <div class="right menu">
-        <%= link_to '#', class: 'ui item white' do %>
-          <button class="ui inverted button">Sign In</button>
-        <% end %>
-        <%= link_to signup_path, class: 'ui item white' do %>
-          <button class="ui inverted button">Sign Up</button>
+        <% if logged_in? %>
+          <%= link_to user_path(current_user), class: 'ui item white' do %>
+            <button class="ui inverted button">Profile</button>
+          <% end %>
+          <%= link_to logout_path, class: 'ui item white', method: :delete do %>
+            <button class="ui inverted button">Log Out</button>
+          <% end %>
+        <% else %>
+          <%= link_to signup_path, class: 'ui item white' do %>
+            <button class="ui inverted button">Sign Up</button>
+          <% end %>
+          <%= link_to login_path, class: 'ui item white' do %>
+            <button class="ui inverted button">Sign In</button>
+          <% end %>
         <% end %>
       </div>
     </div>

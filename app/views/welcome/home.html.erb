@@ -4,8 +4,13 @@
       <div class="jumbotron-title">
         <h1 class="header white">A fun place to share<br>anything with everyone</h1>
         <h3 class="white">From recipes to movie review, here you can find all kind of stuff.</h3>
-        <button class="circular ui icon inverted button">GET STARTED</button>
-        <button class="circular ui inverted button">LEARN MORE</button>
+        <% if logged_in? %>
+        <% else %>
+          <%= link_to signup_path do %>
+            <button class="circular ui icon inverted button">GET STARTED</button>
+          <% end %>
+          <button class="circular ui inverted button">LEARN MORE</button>
+        <% end %>
       </div>
       <div class="draw">
         <%= image_tag('home.svg', size: '440x220', style: 'margin-right: 20px; margin-top:10px;') %>

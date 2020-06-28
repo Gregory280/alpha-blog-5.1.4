@@ -1,8 +1,11 @@
 <div class="container">
   <div class="ui center aligned segment">
-    <h1><%= @user.username %>'s profile</h1>
+    <h1><%= '(Admin)' if current_user.admin? %><%= @user.username %>'s profile</h1>
     <%= gravatar_for @user, size: 130 %>
-    <%= link_to 'Update Profile', edit_user_path(@user), class: 'tiny ui button spacing-top grey' %>
+    <% if logged_in? && @user == current_user %>
+      <%= link_to 'Update Profile', edit_user_path(@user), class: 'tiny ui button spacing-top grey' %>
+      <%= link_to 'Delete Account', user_path(@user), method: :delete, class: 'tiny ui button spacing-top red', data: {confirm: 'Are you sure?'} %>
+    <% end %>
   </div>
   <div class="flickr_pagination">
     <%= will_paginate @articles, :container => false %>
@@ -20,8 +23,10 @@
             <div class="meta"><h5><%= article.created_at.strftime("%d/%m/%Y") %></h5></div>
             <div class="description"><p class="article-content"><%= truncate(article.description, length: 300 ) %></p></div>
             <%= link_to 'READ', article_path(article.id), class: 'tiny ui button spacing-top violet' %>
-            <%= link_to 'EDIT', edit_article_path(article.id), class: 'tiny ui button spacing-top grey' %>
-            <%= link_to 'DELETE', article_path(article.id), method: :delete, data: {confirm: 'Are you sure?'}, class: 'tiny ui button spacing-top red' %>
+            <% if logged_in? && (article.user == current_user || current_user.admin?) %>
+              <%= link_to 'EDIT', edit_article_path(article.id), class: 'tiny ui button spacing-top grey' %>
+              <%= link_to 'DELETE', article_path(article.id), method: :delete, data: {confirm: 'Are you sure?'}, class: 'tiny ui button spacing-top red' %>
+            <% end %>
           </div>
         </div>
       </div>

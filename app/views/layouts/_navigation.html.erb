@@ -7,11 +7,17 @@
         </div>
       </a>
       <%= link_to 'Home', root_path, class: 'active item white navbar-links stroke-effect spacing-left spacing-top' %>
-      <a class="item white navbar-links spacing-top">
-        About
-      </a>
-      <%= link_to 'Articles', articles_path, class: 'item white navbar-links spacing-top' %>
-      <%= link_to 'Create Article', new_article_path, class: 'item white navbar-links spacing-top' %>
+      <%= link_to 'About', about_path, class: 'item white navbar-links spacing-top' %>
+      <div class="ui simple dropdown item white navbar-links spacing-top">
+        Articles
+        <i class="dropdown icon"></i>
+        <div class="menu">
+          <% if logged_in? %>
+            <%= link_to 'Create Article', new_article_path, class: 'item white navbar-links spacing-top' %>
+          <% end %>
+          <div class="item white navbar-links"><%= link_to 'Listing', articles_path %></div>
+        </div>
+      </div>
       <a class="item white navbar-links spacing-top">
         Categories
       </a>

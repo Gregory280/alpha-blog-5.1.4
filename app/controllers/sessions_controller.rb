@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
       flash[:notice] = 'Logged in succesfully'
       redirect_to user
     else
-      flash.now[:alert] = "There was something with your login credentials"
+      flash.now[:danger] = "There was something with your login credentials"
       render 'new'
     end
   end

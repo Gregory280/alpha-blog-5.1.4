@@ -13,5 +13,11 @@
 // Loads all Semantic javascripts
 //= require semantic-ui
 //= require rails-ujs
+//= require jquery
+//= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+
+$(function() {
+    $('.ui.dropdown').dropdown();
+})

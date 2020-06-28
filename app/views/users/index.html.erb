@@ -16,8 +16,14 @@
           <div class="meta"><h5>Joined <%= user.created_at.strftime("%d/%m/%Y") %></h5></div>
           <%= link_to gravatar_for(user, size: 100), user %>
           <div class="meta"><h5><%= pluralize(user.articles.count, 'article') %></h5></div>
-          <%= link_to 'EDIT', edit_user_path(user.id), class: 'tiny ui button spacing-top grey' %>
-
+          <% if logged_in? %>
+            <% if user == current_user %>
+              <%= link_to 'EDIT', edit_user_path(user.id), class: 'tiny ui button spacing-top grey' %>
+            <% end %>
+            <% if current_user.admin? %>
+              <%= link_to 'Delete user', user_path(user), class: 'tiny ui button spacing-top red', method: :delete, data: {confirm: 'Are you sure?'} %>
+            <% end %>
+          <% end %>
         </div>
       </div>
   <% end %>

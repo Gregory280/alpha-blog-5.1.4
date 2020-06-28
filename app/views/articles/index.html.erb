@@ -17,12 +17,14 @@
           <div class="description"><p class="article-content"><%= truncate(article.description, length: 300 ) %></p></div>
           <div class="meta">
           <% if article.user %>
-            <p class="grey">by <%= link_to article.user.username %></p>
+            <p class="grey">by <%= link_to article.user.username, user_path(article.user)  %></p>
           <% end %>
           </div>
           <%= link_to 'READ', article_path(article.id), class: 'tiny ui button spacing-top violet' %>
-          <%= link_to 'EDIT', edit_article_path(article.id), class: 'tiny ui button spacing-top grey' %>
-          <%= link_to 'DELETE', article_path(article.id), method: :delete, data: {confirm: 'Are you sure?'}, class: 'tiny ui button spacing-top red' %>
+          <% if logged_in? && (article.user == current_user || current_user.admin?) %>
+            <%= link_to 'EDIT', edit_article_path(article.id), class: 'tiny ui button spacing-top grey' %>
+            <%= link_to 'DELETE', article_path(article.id), method: :delete, data: {confirm: 'Are you sure?'}, class: 'tiny ui button spacing-top red' %>
+          <% end %>
         </div>
       </div>
   <% end %>

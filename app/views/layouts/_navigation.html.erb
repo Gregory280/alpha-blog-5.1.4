@@ -18,9 +18,16 @@
           <div class="item white navbar-links"><%= link_to 'Listing', articles_path %></div>
         </div>
       </div>
-      <a class="item white navbar-links spacing-top">
+      <div class="ui simple dropdown item white navbar-links spacing-top">
         Categories
-      </a>
+        <i class="dropdown icon"></i>
+        <div class="menu">
+          <% if logged_in? && current_user.admin? %>
+            <%= link_to 'Create Category', new_category_path, class: 'item white navbar-links spacing-top' %>
+          <% end %>
+          <div class="item white navbar-links"><%= link_to 'Listing', categories_path %></div>
+        </div>
+      </div>
       <%= link_to 'Users', users_path, class: 'item white navbar-links spacing-top' %>
       <div class="right menu">
         <% if logged_in? %>

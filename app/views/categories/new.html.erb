@@ -1,0 +1,17 @@
+<div class="container">
+  <div class="ui center aligned segment">
+    <h1>Create a new Category</h1>
+  </div>
+  <div class="contentt">
+  <%= render 'shared/errors', obj: @category %>
+    <%= form_with(model: @category, local: true) do |f| %>
+    <div class="ui form">
+      <div class="field">
+        <label><%= f.label :name, 'Category name' %></label>
+        <%= f.text_field :name %>
+      </div>
+      <%= f.submit 'create category', :class => 'ui submit button large fluid' %>
+    </div>
+    <% end %>
+  </div>
+</div>

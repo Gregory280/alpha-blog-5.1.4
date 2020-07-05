@@ -8,6 +8,11 @@
         <div class="meta"><h5><%= @article.created_at.strftime("%d/%m/%Y")%></h5></div>
         <div class="header"><h1><%= @article.title %></h1></div>
         <div class="description"><p class="article-content"><%= @article.description %></p></div>
+        <div class="content">
+        <% if @article.categories.any? %>
+          <%= render @article.categories %>
+        <% end %>
+        </div>
         <% if logged_in? && (@article.user == current_user || current_user.admin?) %>
           <%= link_to 'Edit', edit_article_path(@article.id), class: 'tiny ui button spacing-top grey' %>
           <%= link_to 'Delete', article_path(@article.id), method: :delete, data: {confirm: 'Are you sure?'}, class: 'tiny ui button spacing-top red' %>

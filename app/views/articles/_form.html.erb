@@ -9,6 +9,11 @@
     <label><%= f.label :description %></label>
     <%= f.text_area :description %>
   </div>
+  <div class="field">
+    <label><%= f.label :category %></label>
+    <%= f.collection_select(:category_ids, Category.all, :id, :name,
+    { prompt: 'None'}, { multiple: true, size: 5} ) %>
+  </div>
   <%= f.submit(@article.new_record? ? 'Post it' : 'Update post', :class => 'ui submit button large fluid') %>
 </div>
 <% end %>

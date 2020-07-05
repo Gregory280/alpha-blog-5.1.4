@@ -1,5 +1,35 @@
 <div class="container">
   <div class="ui center aligned segment">
     <h1>Category: <%= @category.name %></h1>
+  <% if logged_in? && current_user.admin? %>
+    <%= link_to 'Edit', edit_category_path(@category) %>
+  <% end %>
   </div>
 </div>
+<div class="ui center aligned segment">
+    <div class="contentt">
+      <h2>Articles</h2>
+      <% @articles.each do |article| %>
+      <div class="ui cards stackable centered">
+        <div class="card fluid ui spacing-between">
+          <div class="content center aligned">
+            <%= link_to article_path(article.id) do %>
+              <div class="header"><h1><%= article.title %></h1></div>
+            <% end %>
+            <div class="meta"><h5><%= article.created_at.strftime("%d/%m/%Y") %></h5></div>
+            <div class="description"><p class="article-content"><%= truncate(article.description, length: 300 ) %></p>
+            <% if article.categories.any? %>
+              <%= render article.categories %>
+            <% end %>
+            </div>
+            <%= link_to 'READ', article_path(article.id), class: 'tiny ui button spacing-top violet' %>
+            <% if logged_in? && (article.user == current_user || current_user.admin?) %>
+              <%= link_to 'EDIT', edit_article_path(article.id), class: 'tiny ui button spacing-top grey' %>
+              <%= link_to 'DELETE', article_path(article.id), method: :delete, data: {confirm: 'Are you sure?'}, class: 'tiny ui button spacing-top red' %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <% end %>
+    </div>
+  </div>

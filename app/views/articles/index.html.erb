@@ -19,6 +19,9 @@
           <% if article.user %>
             <p class="grey">by <%= link_to article.user.username, user_path(article.user)  %></p>
           <% end %>
+          <% if article.categories.any? %>
+            <%= render article.categories %>
+          <% end %>
           </div>
           <%= link_to 'READ', article_path(article.id), class: 'tiny ui button spacing-top violet' %>
           <% if logged_in? && (article.user == current_user || current_user.admin?) %>

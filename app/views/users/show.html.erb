@@ -1,6 +1,8 @@
 <div class="container">
   <div class="ui center aligned segment">
-    <h1><%= '(Admin)' if current_user.admin? %><%= @user.username %>'s profile</h1>
+    <% if logged_in? %>
+      <h1><%= '(Admin)' if current_user.admin? %><%= @user.username %>'s profile</h1>
+    <% end %>
     <%= gravatar_for @user, size: 130 %>
     <% if logged_in? && @user == current_user %>
       <%= link_to 'Update Profile', edit_user_path(@user), class: 'tiny ui button spacing-top grey' %>
@@ -21,7 +23,11 @@
               <div class="header"><h1><%= article.title %></h1></div>
             <% end %>
             <div class="meta"><h5><%= article.created_at.strftime("%d/%m/%Y") %></h5></div>
-            <div class="description"><p class="article-content"><%= truncate(article.description, length: 300 ) %></p></div>
+            <div class="description"><p class="article-content"><%= truncate(article.description, length: 300 ) %></p>
+            <% if article.categories.any? %>
+              <%= render article.categories %>
+            <% end %>
+            </div>
             <%= link_to 'READ', article_path(article.id), class: 'tiny ui button spacing-top violet' %>
             <% if logged_in? && (article.user == current_user || current_user.admin?) %>
               <%= link_to 'EDIT', edit_article_path(article.id), class: 'tiny ui button spacing-top grey' %>

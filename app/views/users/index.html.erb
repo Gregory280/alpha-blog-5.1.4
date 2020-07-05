@@ -27,6 +27,9 @@
         </div>
       </div>
   <% end %>
+    <div class="flickr_pagination">
+    <%= will_paginate @users, :container => false %>
+  </div>
     </div>
   </div>
 </div>

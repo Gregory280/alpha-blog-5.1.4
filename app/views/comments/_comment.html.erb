@@ -1,10 +1,15 @@
 <div class="comment">
+  <a class="avatar">
+    <%= gravatar_for comment.user %>
+  </a>
   <div class="content">
-    <a class="author"><%= comment.name %></a>
+    <a class="author"><%= comment.user.username %></a>
     <div class="metadata">
-      <span class="date"><%= comment.created_at %></span>
+      <span class="date"><%= comment.created_at.strftime("%d/%m/%Y") %></span>
     </div>
     <div class="text"><%= comment.comment %></div>
   </div>
-  <%= link_to 'Delete', [comment.article, comment], method: :delete, class: 'button red mini ui', data: { confirm: 'Are yuo sure?' } %>
+  <% if logged_in? && comment.user == current_user %>
+    <%= link_to 'Delete', [comment.article, comment], method: :delete, class: 'button red mini ui', data: { confirm: 'Are yuo sure?' } %>
+  <% end %>
 </div>

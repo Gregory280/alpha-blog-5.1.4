@@ -7,7 +7,7 @@
         
         <div class="meta"><h5><%= @article.created_at.strftime("%d/%m/%Y")%></h5></div>
         <div class="header"><h1><%= @article.title %></h1></div>
-        <div class="description"><p class="article-content"><%= @article.description %></p></div>
+        <div class="description" style="word-wrap: break-word; flex: inherit" ><p class="article-content"><%= @article.description %></p></div>
         <div class="content">
         <% if @article.categories.any? %>
           <%= render @article.categories %>
@@ -21,11 +21,15 @@
     </div>
   </div>
   <div class="ui comments">
-    <h3 class="ui dividing header"><%= @article.comments.count %> Comments</h3>
+    <h3 class="ui dividing header"><%= pluralize(@article.comments.count, 'comment') %></h3>
     <%= render @article.comments %>
   </div>
   <h3>Leave a reply</h3>
-  <%= render 'comments/form' %>
+  <% if logged_in? %>
+    <%= render 'comments/form' %>
+  <% else %>
+    <h4>You must be loggin in order to comment</h4>
+  <% end %>
 </div>
 
 </div>

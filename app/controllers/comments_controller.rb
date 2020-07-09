@@ -1,9 +1,16 @@
 class CommentsController < ApplicationController
-
+  before_action :require_user
   def create
     @article = Article.find(params[:article_id])
     @comment = @article.comments.create(params[:comment].permit(:name, :comment))
-    redirect_to article_path(@article)
+    @comment.user = current_user
+    if @comment.save
+      flash[:notice] = "Comment posted successfully!"
+      redirect_to article_path(@article)
+    else
+      flash.now[:notice] = 'Cant be blank'
+      render 'comments/_form'
+    end
   end
 
   def destroy

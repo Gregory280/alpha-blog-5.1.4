@@ -14,7 +14,7 @@
             <div class="header"><h1><%= article.title %></h1></div>
           <% end %>
           <div class="meta"><h5><%= article.created_at.strftime("%d/%m/%Y") %></h5></div>
-          <div class="description"><p class="article-content"><%= truncate(article.description, length: 300 ) %></p></div>
+          <div class="description" style="word-wrap: break-word; flex: inherit"><p class="article-content"><%= truncate(article.description, length: 300 ) %></p></div>
           <div class="meta">
           <% if article.user %>
             <p class="grey">by <%= link_to article.user.username, user_path(article.user)  %></p>

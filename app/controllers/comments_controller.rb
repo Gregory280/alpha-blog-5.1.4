@@ -8,8 +8,7 @@ class CommentsController < ApplicationController
       flash[:notice] = "Comment posted successfully!"
       redirect_to article_path(@article)
     else
-      flash.now[:notice] = 'Cant be blank'
-      render 'comments/_form'
+      flash.now[:notice] = 'Error while sending message!'
     end
   end
 

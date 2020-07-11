@@ -22,7 +22,34 @@
   <div class="ui middle aligned stackable grid container">
     <div class="row">
       <div class="eight wide column">
-        <h3 class="ui header"> We help your knowledge to reach countless people</h3>
+        <h2 class="ui header"> We help your knowledge to reach countless people</h2>
+        <h5> Dummy text Dummy text Dummy text Dummy text 
+              Dummy text Dummy text Dummy text Dummy text
+               Dummy text Dummy text Dummy text Dummy text
+                Dummy text Dummy text Dummy text Dummy text 
+        </h5>
+      </div>
+      <div class="six wide right floated column">
+        <%= image_tag('letter.png', class: 'ui large bordered rounded image') %>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="ui vertical stripe quote segment">
+  <div class="ui equal width stackable internally celled grid">
+    <div class="center aligned row">
+      <div class="column">
+        <h3 class="ui horizontal header divider">
+          Favorite Article
+        </h5>
+        <p>
+          <a class="ui image avatar">
+            <%= gravatar_for @popular.user %>
+          </a>
+          <b style="font-size: 18px"><%= @popular.user.username %></b>
+        </p>
+        <h2><%= @popular.title %></h3>
+        <%= link_to 'Read', article_path(@popular), class: 'ui large button' %>
       </div>
     </div>
   </div>

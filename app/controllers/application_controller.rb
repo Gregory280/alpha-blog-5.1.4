@@ -19,4 +19,11 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def find_most_popular_article
+    article_id_counts = Like.group(:article_id).count
+    most_popular_count = article_id_counts.sort_by(&:last).last
+    most_popular_article_id = most_popular_count.first
+    @most_popular_article = Article.find(most_popular_article_id)
+  end
+
 end

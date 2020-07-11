@@ -3,7 +3,12 @@
     <%= gravatar_for comment.user %>
   </a>
   <div class="content">
-    <a class="author"><%= comment.user.username %></a>
+    <a class="author">
+      <%= comment.user.username %>
+      <% if @article.user.username == comment.user.username %>
+        <a class="author"> (Author) </a>
+      <% end %>
+    </a>
     <div class="metadata">
       <span class="date"><%= comment.created_at.strftime("%d/%m/%Y") %></span>
     </div>

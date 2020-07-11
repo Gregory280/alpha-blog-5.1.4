@@ -19,6 +19,16 @@
           <% if article.user %>
             <p class="grey">by <%= link_to article.user.username, user_path(article.user)  %></p>
           <% end %>
+          <div class="ui labeled button" tabindex="0">
+            <%= link_to article_likes_path(article), method: :post do %>
+              <div class="ui red tiny button">
+                <i class="heart icon"></i>
+              </div>
+            <% end %>
+            <a class="ui basic red left pointing label">
+              <%= article.likes.count %>
+            </a>
+          </div>
           <% if article.categories.any? %>
             <%= render article.categories %>
           <% end %>

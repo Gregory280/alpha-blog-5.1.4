@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   before_save {self.email = email.downcase}
   has_secure_password
+  has_many :likes, dependent: :destroy
   has_many :comments
   has_many :articles, dependent: :destroy
   validates :username, presence: true, length: {minimun: 3, maximum: 20}, uniqueness: true

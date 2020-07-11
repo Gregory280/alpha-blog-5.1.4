@@ -1,4 +1,5 @@
 class Article < ApplicationRecord
+  has_many :likes, dependent: :destroy
   has_many :comments
   has_many :article_categories
   has_many :categories, through: :article_categories

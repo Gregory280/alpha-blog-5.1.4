@@ -35,6 +35,8 @@ class UsersController < ApplicationController
   def show
     @user = set_user
     @articles = @user.articles.paginate(page: params[:page], per_page: 4)
+    @likes = count_articles_likes(@user)
+    @comments = count_articles_comments(@user)
   end
 
   def index
@@ -63,6 +65,24 @@ class UsersController < ApplicationController
       flash[:alert] = 'You can only edit or delete your own profile'
       redirect_to @user
     end
+  end
+
+  def count_articles_likes(user)
+    user_articles = user.articles
+    count_likes=0
+    user_articles.each do |article|
+      count_likes = count_likes + article.likes.count
+    end
+    @likes = count_likes
+  end
+
+  def count_articles_comments(user)
+    user_articles = user.articles
+    count_comments = 0
+    user_articles.each do |article|
+      count_comments = count_comments + article.comments.count
+    end
+    @comments = count_comments
   end
 
 end

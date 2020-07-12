@@ -33,4 +33,8 @@ class ApplicationController < ActionController::Base
     @most_commented_article = Article.find(most_commented_article_id)
   end
 
+  def find_recents_articles
+    @articles = Article.order("created_at").last(3)
+  end
+
 end
